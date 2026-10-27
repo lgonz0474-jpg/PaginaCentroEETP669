@@ -1,0 +1,822 @@
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+html{
+    scroll-behavior: smooth !important ;
+}
+
+
+body{
+    margin: 0;
+    font-family: 'roboto', sans-serif;
+    background-color: var(--white-color) !important;
+  color: var(--black-color);
+}
+
+h1{font-size: 2em;}
+h2{font-size: 2.4em;}
+h3{font-size: 2em;}
+p{font-size: 1.25em;}
+
+.color-acento{
+    color: rgb(0, 0, 0);
+}
+
+/* Variables globales */
+:root {
+  --header-height: 3.5rem;
+  --white-color: #ffffff;
+  --black-color: #000000;
+  --font-regular: 400;
+  --font-medium: 500;
+  --z-fixed: 100;
+}
+
+.nav__logo {
+  position: relative;
+  left: 25px;
+  font-size: 1em;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+}
+
+/* LOGO CENTRO ESTUDIANTES NAV */
+
+.nav__logo {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem; 
+}
+
+.nav__logo-img {
+    width: 50px;
+    height: auto;
+}
+
+/* LOGO CENTRO ESTUDIANTES NAV FIN */
+
+
+/* Header principal */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #e2e4e4;
+  z-index: var(--z-fixed);
+  font-family: "Montserrat Alternates", sans-serif;
+  color: var(--black-color);
+}
+
+/* Contenedor del navbar */
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 1.5rem;
+  position: relative;
+}
+
+/* Logo */
+.nav__logo {
+  color: var(--black-color);
+  font-weight: var(--font-medium);
+  font-size: 1.25rem;
+  letter-spacing: 0.1rem;
+  text-decoration: none;
+}
+
+/* Iconos toggle/cerrar menú móvil */
+.nav__toggle {
+  position: fixed;
+  top: 1rem;
+  right: 1.5rem;
+  font-size: 1.5rem;
+  color: var(--black-color);
+  cursor: pointer;
+  z-index: 101;
+}
+
+.nav__close {
+  font-size: 1.5rem;
+  color: var(--black-color);
+  cursor: pointer;
+  display: flex;
+}
+
+/* Menú móvil */
+.nav__menu {
+  position: fixed;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background-color: #e2e4e4; /* Fondo blanco */
+  padding: 6rem 3rem 4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: left 0.4s ease;
+  z-index: 99;
+}
+
+/* Items del menú */
+.nav__item {
+  transform: translateX(-150px);
+  visibility: hidden;
+  transition: transform 0.4s ease-out, visibility 0.4s;
+}
+
+.nav__item:nth-child(1) { transition-delay: 0.1s; }
+.nav__item:nth-child(2) { transition-delay: 0.2s; }
+.nav__item:nth-child(3) { transition-delay: 0.3s; }
+.nav__item:nth-child(4) { transition-delay: 0.4s; }
+
+/* Lista de links */
+.nav__list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3rem;
+}
+
+.nav__link {
+  color: var(--black-color); /* Texto negro */
+  font-weight: var(--font-medium);
+  font-size: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+  transition: opacity 0.4s;
+  text-decoration: none;
+}
+
+.nav__link i {
+  font-size: 2rem;
+  position: absolute;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s, visibility 0.4s;
+  color: var(--black-color); /* Iconos negros */
+}
+
+.nav__link span {
+  padding-left: 2.5rem;
+  transition: margin 0.4s;
+  position: relative;
+}
+
+.nav__link span::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--black-color); /* Subrayado negro */
+  transition: width 0.4s ease-out;
+}
+
+/* Hover effects */
+.nav__link:hover span { margin-left: 2.5rem; }
+.nav__link:hover i {
+  opacity: 1;
+  visibility: visible;
+}
+.nav__link:hover span::after { width: 100%; }
+
+/* Fade links hermanos */
+.nav__list:has(.nav__link:hover) .nav__link:not(:hover) {
+  opacity: 0.4;
+}
+
+/* Close button */
+.nav__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.5rem;
+}
+
+/* Social links (opcional) */
+.nav__social {
+  display: flex;
+  column-gap: 1rem;
+}
+.nav__social-link {
+  color: var(--black-color);
+  font-size: 1.5rem;
+  transition: transform 0.4s;
+}
+.nav__social-link:hover { transform: translateY(-0.25rem); }
+
+/* Mostrar menú */
+.show-menu { left: 0; }
+.show-menu .nav__item {
+  transform: translateX(0);
+  visibility: visible;
+}
+
+header a:hover{
+    color: rgb(45, 192, 192);
+    transition: color 0.5s ease-out;
+    cursor: pointer;
+}
+
+#hero{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-direction: column;
+    height: 100vh;
+    color: white;
+    background-image: linear-gradient(
+        0deg,
+        rgb(0, 0, 0, 0.2),
+        rgb(0, 0, 0, 0.2)
+    )
+    ,url("img/Hero.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+
+#hero h1{
+    font-size: 50px;
+    color: white;
+}
+
+#hero h2{
+    font-size: 30px;
+}
+
+#Definicion .container{
+    text-align: center;
+    padding: 200px 20px;
+    height: 130vh;
+}
+
+.boton-descarga {
+  display: block;
+  margin: 40px auto; /* centra horizontalmente */
+  background-color: rgb(172, 224, 248);
+  color: rgb(26, 23, 228);
+  padding: 12px 25px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+  max-width: 600px; /* opcional, para no hacerlo gigante */
+  transition: 0.5s ease;
+  z-index: 12;
+}
+
+.boton-descarga:hover {
+  background-color: rgb(135, 209, 193);
+}
+
+.accordion-collapse{
+    transition: all 0.5s ease-in-out !important;
+}
+
+.accordion-body {
+    transition: 0.5s ease;
+    opacity: 0;
+}
+
+.accordion-collapse.show .accordion-body {
+    opacity: 1;
+}
+
+.accordion-item{
+    position: relative;
+    margin: 10px 20px 20px;
+    padding: 10px;
+    font-size: 20px;
+    margin: auto;
+    transition: all 0.5s ease;
+}
+
+.accordion-button:hover{
+    background-color: rgb(135, 209, 193);
+    transition: all 0.5s ease !important;
+    cursor: pointer;
+}
+
+.accordion-button:not(.collapsed){
+  background-color: rgba(10, 10, 10, 0.871) !important;
+  color: #fff !important;
+  scroll-behavior: smooth;
+  transition: all 0.5s ease !important;
+}
+
+.accordion-button:focus {
+    box-shadow: none !important;
+    transition: all 0.5s ease !important;
+}
+
+#Nuestras-Modalidades{
+    text-align: center;
+    background-color: rgba(10, 10, 10, 0.871);
+    color: white;
+    margin-top: 20vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+#Nuestras-Modalidades .container{
+    padding: 150px 0;   
+}
+
+#Nuestras-Modalidades h2{
+    margin-top: 0;
+}
+
+#Nuestras-Modalidades p{
+    display: none;
+}
+
+#Nuestras-Modalidades .carta{
+    background-position: center center;
+    background-size: cover;
+    padding: 50px 15px;
+    margin: 25px;
+    border-radius: 10px;
+}
+
+.carta:nth-child(1){
+    background-image: linear-gradient(
+        0deg,
+        rgb(0, 0, 0, 0.2),
+        rgb(0, 0, 0, 0.2)
+    )
+    ,url("img/Gestion.jpeg");
+    }
+
+.carta:nth-child(2){
+    background-image: linear-gradient(
+        0deg,
+        rgb(0, 0, 0, 0.2),
+        rgb(0, 0, 0, 0.2)
+    )
+    ,url("img/infor.jpeg");
+}
+
+.carta:last-child{
+        background-image: linear-gradient(
+        0deg,
+        rgb(0, 0, 0, 0.2),
+        rgb(0, 0, 0, 0.2)
+    )
+    ,url("img/electro.jpeg");
+}
+
+button{
+    font-size: 1.5em;
+    padding: 10px 40px;
+    border-radius: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    background-color: rgb(99, 246, 241);
+    color: black;
+}
+
+button:hover{
+    background-color: rgb(81, 171, 204);
+    color: rgb(21, 44, 53);
+    transition: background-color 1s ease-out;
+    cursor: pointer;
+}
+
+.container{
+    max-width: 1400px;
+    margin: auto;
+}
+
+#aplica-ya {
+  background-color: #111; /* tu fondo negro */
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+/* Título arriba */
+#aplica-ya h2 {
+  margin-bottom: 40px;
+  font-size: 2rem;
+}
+
+/* Contenido en 2 columnas */
+.aplica-contenido {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* por si se reduce en pantallas chicas */
+  gap: 20px;
+}
+
+/* Columna izquierda: redes sociales */
+.aplica-redes {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  align-items: center;
+}
+
+/* Columna derecha: imagen */
+.aplica-img img {
+  max-width: 600px;
+  width: 100%;
+  border-radius: 5px; /* opcional */
+}
+
+footer{
+    background-color: #111;
+    max-height: 20vh;
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-direction: column;
+}
+
+footer p{
+    position: relative;
+    bottom: 1vh;
+    font-size: 14px;
+    margin: 0;
+    padding: 12px;
+    color: rgb(112, 109, 109);
+}
+
+footer .container{
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    color: rgb(255, 255, 255);
+}
+
+.aplica-redes{
+    display: flex !important; 
+    justify-content: center;
+    align-items: center;              /* espacio entre icono y texto */
+    padding: 6px 8px;
+}
+
+.footer-social-link{
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-social-link:hover { 
+    opacity: 0.9; 
+    transform: translateY(-2px); 
+    transition: .15s ease; 
+    color: rgb(52, 207, 207);
+}
+
+
+    
+
+@media (min-width: 720px){
+    header{
+        position: fixed;
+        width: 100%;
+    }
+    
+    header .container{
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    header nav{
+        flex-direction: row;
+        padding-bottom: 0;
+        
+    }
+
+    #hero{
+        align-items: left;
+        justify-content: center;
+        text-align: left;
+    }
+
+    #Definicion .container{
+        display: flex;
+        justify-content: center;
+    }
+
+    #Definicion .texto{
+        width: 50%;
+        display: flex;
+        padding-left: 60px;
+        justify-content: center;
+        flex-direction: column;
+        text-align: initial;
+        font-size: 12px;
+        max-width: 500px;
+        padding-bottom: 10vh;
+    }
+
+    #Definicion p{
+        margin: 10px;
+        font-size: 17px;
+        min-width: 30vh;
+    }
+
+    #Definicion h2{
+        margin-top: 0px;
+    }
+
+    #Definicion .img-container{
+        background-image: linear-gradient(
+            0deg,
+            rgba(0,0,0,0.2),
+            rgba(0,0,0,0.2)
+        ), url("img/Def.jpeg");
+        background-size: cover;
+        background-position: center center;
+        height: 800px;
+        width: 800px;
+        position: relative;
+        right: 100px;
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.3);
+        border-radius: 2px;
+    }
+
+    .boton-descarga {
+        position: relative;
+        top: 3vh;
+        display: block;
+        margin: 40px auto; /* centra horizontalmente */
+        background-color: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        text-align: center;
+        max-width: 600px; /* opcional, para no hacerlo gigante */
+        transition: 0.5s ease;
+}
+
+.boton-descarga:hover {
+  background-color: rgb(92, 200, 207);
+}
+
+.accordion-item{
+        position: relative;
+        max-width: 110vh;
+}
+
+#Nuestras-Modalidades .programas{
+        display: flex;
+        justify-content: center;
+}
+
+    
+#Nuestras-Modalidades .carta{
+        position: relative;        /* necesario para posicionar el título encima */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 200px 15px 40px;  /* <-- top = alto del "área imagen" (ver abajo) */
+        margin: 20px;
+        min-height: 500px;
+        background-size: 100% 200px;  /* deja la imagen en la parte superior (como ya tenías) */
+        background-repeat: no-repeat;
+        background-position-y: 0;
+        background-color: rgb(34, 34, 41);
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        border-radius: 5px;
+}
+    
+.carta .contenido {
+        flex: 1;
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 5px; /* separación texto-botón */
+}
+
+#Nuestras-Modalidades p{
+        margin: 0;
+        margin-top: auto;          /* empuja p (y todo lo que viene después) hacia el fondo */
+        text-align: center;
+        z-index: 1;
+        display: block;            /* anula posibles display:flex que tengas en #Nuestras-Modalidades p */
+        top: auto !important;
+        padding-bottom: 40px; 
+}
+    
+#Nuestras-Modalidades h3{
+        position: absolute;
+        top: 30px;                /* centra el h3 approx en la mitad de la "imagen" */
+        left: 0;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        z-index: 2;
+        pointer-events: none;
+    }
+}
+
+@media (min-width: 1024px){
+
+    .nav {
+        height: calc(var(--header-height) + 2rem);
+    }
+
+    .nav__toggle, .nav__close { display: none; }
+    .nav__link { font-size: 0.938rem; }
+    .nav__link i { font-size: 1.5rem; }
+    .nav__list { flex-direction: row; column-gap: 3.5rem; }
+
+    .nav__menu {
+        position: static;
+        display: flex !important;
+        flex-direction: row;
+        align-items: center;
+        column-gap: 3.5rem;
+        width: auto;
+        height: auto;
+        padding: 0;
+        margin-top: 15px;
+        background: #e2e4e4; /* Fondo blanco en desktop también */
+    }
+    .nav__item {
+        transform: none !important;
+        visibility: visible !important;
+    }
+
+    #Acordeon{
+        min-height: 80vh;
+    }
+
+    .accordion-item{
+        position: relative;
+        top: 10vh;
+        max-width: 90vh;
+    }
+
+    #Nuestras-Modalidades{
+        height: 100vh;
+    }
+
+    .boton-descarga {
+        position: relative;
+        top: 10vh;
+        display: block;
+        margin: 40px auto; /* centra horizontalmente */
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        text-align: center;
+        max-width: 600px; /* opcional, para no hacerlo gigante */
+    }
+
+    .boton-descarga:hover {
+        background-color: rgb(92, 200, 207);
+    }
+
+    #Nuestras-Modalidades .carta{
+        position: relative;        /* necesario para posicionar el título encima */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 200px 15px 40px;  /* <-- top = alto del "área imagen" (ver abajo) */
+        margin: 20px;
+        min-height: 500px;
+        background-size: 100% 200px;  /* deja la imagen en la parte superior (como ya tenías) */
+        background-repeat: no-repeat;
+        background-position-y: 0;
+        background-color: rgb(34, 34, 41);
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 1500px){
+    #Definicion{
+        max-height: 90vh;
+    }
+
+    #Definicion .texto{
+        width: 50%;
+        display: flex;
+        padding-left: 60px;
+        justify-content: center;
+        flex-direction: column;
+        text-align: initial;
+        font-size: 15px;
+        max-width: 500px;
+        padding-bottom: 30vh;
+    }
+
+    #Acordeon{
+        max-height: 100vh;
+    }
+
+    .accordion-item{
+        position: relative;
+        top: 20vh;
+        max-width: 105vh;
+    }
+
+    .boton-descarga {
+        position: relative;
+        top: 47vh;
+        display: block;
+        margin: 50px auto; /* centra horizontalmente */
+        padding: 12px 25px;
+        border-radius: 8px;
+        text-decoration: none;
+        font-weight: bold;
+        text-align: center;
+        max-width: 600px; /* opcional, para no hacerlo gigante */
+    }
+
+    .boton-descarga:hover {
+        background-color: rgb(92, 200, 207);
+    }
+
+    #Nuestras-Modalidades{
+        height: 85vh;
+    }
+
+    #Nuestras-Modalidades .programas{
+        display: flex;
+        justify-content: center;
+    }
+
+    
+    #Nuestras-Modalidades .carta{
+        position: relative;        /* necesario para posicionar el título encima */
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 200px 15px 40px;  /* <-- top = alto del "área imagen" (ver abajo) */
+        margin: 20px;
+        min-height: 600px;
+        background-size: 100% 200px;  /* deja la imagen en la parte superior */
+        background-repeat: no-repeat;
+        background-position-y: 0;
+        background-color: rgb(34, 34, 41);
+        box-shadow: 2px 2px 10px rgba(0,0,0,0.2);
+        border-radius: 5px;
+    }
+    
+    .carta .contenido {
+        flex: 1;
+        margin-top: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 5px;         /* separación texto-botón */
+    }
+
+    #Nuestras-Modalidades p{
+        margin: 0;
+        margin-top: auto;  /* empuja p (y todo lo que viene después) hacia el fondo */
+        text-align: center;
+        z-index: 1;
+        display: block;    /* quita posibles display:flex que tenga en #Nuestras-Modalidades p */
+        top: auto !important;
+        padding-bottom: 100px; 
+    }
+    
+    #Nuestras-Modalidades h3{
+        position: absolute;
+        top: 30px;          /* centra el h3 aprox en la mitad de la "imagen" */
+        left: 0;
+        width: 100%;
+        margin: 0;
+        text-align: center;
+        z-index: 2;
+        pointer-events: none;
+    }
+
+    .aplica-img{
+        filter: blur(1px);
+        transition: all 1s ease;
+    }
+
+    .aplica-img:hover{
+        filter: blur(0px);
+        transition: all 1s ease;
+        transform: scale(1.1);
+    }
+}
